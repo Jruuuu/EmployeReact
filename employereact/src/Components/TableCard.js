@@ -8,7 +8,7 @@ export default function TableCard(props){
             <thead>
               <tr>
                 <th>IMAGE </th>
-                <th>NAME</th>
+                <th onClick ={props.sortClick}>NAME{props.currentSort}</th>
                 <th>PHONE</th>
                 <th>EMAIL</th>
                 <th>LOCATION</th>
