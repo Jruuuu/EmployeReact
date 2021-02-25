@@ -1,55 +1,41 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import Table from "react-bootstrap/Table";
+import TableCard from "./TableCard.js"
 
 export default function Main() {
 
     const [employeeData, setEmployeeData]= useState([]);
+    const [queryFilter, setQueryFilter]= useState("");
 
     useEffect(() => {
-        axios.get("https://randomuser.me/api/?results=200&nat=us").then((res) => {
-            console.log(res);
+        axios.get("https://randomuser.me/api/?results=40&nat=us").then((res) => {
             setEmployeeData(res.data.results)
             
         });
-    });
+    },[]);
 
-    const renderEmployees = () => {
-        const employees = employeeData.map((employee) => {
-            console.log(employee)
-            return (
-                <tr key={employee.login.uuid}>
-                    <td>
-                        <img alt="picture" src={employee.picture.thumbnail}/>
-                       
-                    </td>
-                    <td>{employee.name.first} {employee.name.last}</td>
-                    <td>{employee.cell}</td>
-                    <td>{employee.email}</td>
-                    <td>{employee.location.city},{employee.location.state}</td>
-                   
-                   
-                </tr>
-            )
-        })
-        return employees
+    function search(employees){
+        return employees.filter((employee) =>
+        employee.name.first.toLowerCase().indexOf(queryFilter)> -1 
+        )
     }
 
+    
+
     return (
-        <>
-            <input className="search"/>
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    <th>IMAGE </th>
-                    <th>NAME</th>
-                    <th>PHONE</th>
-                    <th>EMAIL</th>
-                    <th>LOCATION</th>
-                </tr>
-                </thead>
-                {renderEmployees()}
-            </Table>
-        </>
+      <>
+        <div>
+          <input
+            className="search"
+            type="text"
+            value={queryFilter}
+            onChange={(e) => setQueryFilter(e.target.value)}
+          />
+        </div>
+        <div>
+          <TableCard
+          employeeData={search(employeeData)}/>
+        </div>
+      </>
     );
 };
