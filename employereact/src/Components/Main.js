@@ -30,13 +30,13 @@ export default function Main() {
             const filteredArray = employeeData
 
            filteredArray.sort((a,b)=> (a.name.first < b.name.first)? 1 : -1);
-           setSortOrder({sortOrder: 'v'});
-            setfilteredEmployees({ filteredArray})
+           setSortOrder({sortOrder: "v"});
+           setfilteredEmployees({ filteredArray})
             
         }else{
             const filteredArray = employeeData
             filteredArray.sort((a,b)=> (a.name.first > b.name.first)? 1 : -1);
-            setSortOrder({sortOrder: '^'});
+            setSortOrder({sortOrder: "^"});
             setfilteredEmployees({ filteredArray})
         }
     }
@@ -56,7 +56,7 @@ export default function Main() {
         <div>
           <TableCard
           employeeData={search(employeeData)}
-          currentSort ={sortOrder ==='"?"'||'^'||'v' }
+          currentSort ={sortOrder ==='?'||'^'||'v' }
           sortClick={sortOnClick}/>
         </div>
       </>
