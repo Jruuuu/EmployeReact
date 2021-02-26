@@ -30,13 +30,13 @@ export default function Main() {
             const filteredArray = employeeData
 
            filteredArray.sort((a,b)=> (a.name.first < b.name.first)? 1 : -1);
-           setSortOrder({sortOrder: "v"});
+           setSortOrder("v");
            setfilteredEmployees({ filteredArray})
             
         }else{
             const filteredArray = employeeData
             filteredArray.sort((a,b)=> (a.name.first > b.name.first)? 1 : -1);
-            setSortOrder({sortOrder: "^"});
+            setSortOrder("^");
             setfilteredEmployees({ filteredArray})
         }
     }
