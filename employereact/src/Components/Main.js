@@ -50,6 +50,7 @@ export default function Main() {
             className="search"
             type="text"
             value={queryFilter}
+            placeholder="Search Employee Here"
             onChange={(e) => setQueryFilter(e.target.value)}
           />
         </div>

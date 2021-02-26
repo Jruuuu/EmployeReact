@@ -1,4 +1,4 @@
-import Nav from "./Components/Nav";
+import Nav from "./Components/Nav/Nav";
 import Main from "./Components/Main";
 
 export default function App() {
